@@ -1,0 +1,164 @@
+﻿@model IEnumerable<F1WebApp_CodeFirstSeededDb.Models.Car>
+
+@{
+    ViewBag.Title = "Index";
+    string color = "";
+    string fontColor = "";
+    string border = "";
+}
+<style>
+    #carImage {
+        max-height:100px;
+    }
+    #row {
+        background: @color;
+        color: @fontColor;
+        padding-top: 5px;
+    }
+    .link {
+        background: white;
+        color: black;
+    }
+    table {
+        border-collapse:separate;
+        border-spacing: 0 1em;
+        font-size: 20px;
+        text-align: center;
+    }
+    body {
+            background: #DDD;
+    }
+    .headers {
+        background: #333;
+        color: white;
+        height: 100px;
+    }
+    .headers>th {
+        text-align: center;
+    }
+</style>
+<body>
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    @*@using (Html.BeginForm())
+        {
+            <p>
+                Find by name, constructor or Driver: @Html.TextBox("sortString")
+                <input type="submit" value="Search" />
+            </p>
+        }*@
+    <table class="table">
+        <tr class="headers">
+            <th>@Html.ActionLink("Constructor", "Index", new { sortOrder = ViewBag.ConstSortParm })</th>
+            <th>@Html.ActionLink("Driver Name", "Index", new { sortOrder = ViewBag.DriverSortParm })</th>
+            <th>@Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })</th>
+            <th>@Html.ActionLink("Year", "Index", new { sortOrder = ViewBag.YearSortParm })</th>
+            <th>@Html.ActionLink("Wins", "Index", new { sortOrder = ViewBag.WinsSortParm })</th>
+            <th>@Html.ActionLink("Podiums", "Index", new { sortOrder = ViewBag.PodiumsSortParm })</th>
+            <th>
+                @Html.DisplayNameFor(model => model.FastestLaps)
+            </th>
+            <th>@Html.ActionLink("Poles", "Index", new { sortOrder = ViewBag.PolesSortParm })</th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            string carpath = "";
+            carpath = $"../../Images/CarImages/{item.ConstructorID}.png";
+            switch (item.Constructor.Name)
+            {
+                case "Mercedes":
+                    color = "darkcyan";
+                    fontColor = "white";
+                    border = "grey";
+                    break;
+                case "Ferrari":
+                    color = "#ff2800";
+                    fontColor = "white";
+                    border = "black";
+                    break;
+                case "RedBull Racing":
+                    color = "#02172f";
+                    fontColor = "white";
+                    border = "yellow";
+                    break;
+                case "McLaren Formula 1":
+                    color = "#F98E1d";
+                    fontColor = "black";
+                    border = "blue";
+                    break;
+                case "Haas":
+                    color = "#666";
+                    fontColor = "white";
+                    border = "red";
+                    break;
+                case "Williams":
+                    color = "white";
+                    fontColor = "navy";
+                    border = "lightblue";
+                    break;
+                case "Toro Rosso":
+                    color = "#06012f";
+                    fontColor = "white";
+                    border = "red";
+                    break;
+                case "Alfa Romeo Racing":
+                    color = "crimson";
+                    fontColor = "white";
+                    border = "tomato";
+                    break;
+                case "Racing Point Force India":
+                    color = "pink";
+                    fontColor = "black";
+                    border = "black";
+                    break;
+                case "Renault Sport":
+                    color = "#ffeb19";
+                    fontColor = "black";
+                    border = "black";
+                    break;
+            }
+
+            <tr style="background: @color; color: @fontColor; border:1px solid @border;" class="space">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Constructor.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Driver.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Wins)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Podiums)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FastestLaps)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Poles)
+                </td>
+                <td>
+                    <img src=@carpath id="carImage" />
+                </td>
+                <td class="link">
+                    <p>@Html.ActionLink("Edit", "Edit", new { id = item.CarID })</p>
+                    <p>@Html.ActionLink("Details", "Details", new { id = item.CarID })</p>
+                    <p>@Html.ActionLink("Delete", "Delete", new { id = item.CarID })</p>
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<F1WebApp_CodeFirstSeededDb.Models.Constructor>
+
+@{
+    ViewBag.Title = "Index";
+}
+<head>
+    <style>
+        .headers {
+            background: #333;
+            color: white;
+        }
+        .headers:hover {
+            background: #333;
+            color: white;
+        }
+        .tableRow {
+            background: #AAA;
+            color: black;
+        }
+        a, a:hover {
+            text-decoration: none;
+        }
+        a {
+            color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <h2>List of Current Constructors</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <div class="col-md-8 col-md-offset-2 col-sm-12">
+    <table class="table table-bordered">
+        <tr class="headers">
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="tableRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ConstructorID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ConstructorID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ConstructorID })
+                </td>
+            </tr>
+        }
+
+    </table>
+        </div>
+</body>
