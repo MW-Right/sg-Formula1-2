@@ -1,0 +1,149 @@
+﻿@model IEnumerable<F1WebApp_CodeFirstSeededDb.Models.Driver>
+
+@{
+    ViewBag.Title = "Index";
+    string imagePath = "";
+}
+
+<head>
+    <style>
+        @@font-face {
+            font-family: 'f1';
+            src: url('../../Formula1-Regular.ttf');
+        }
+        body > * {
+            background: #555;
+        }
+        .imageCont{
+            overflow: hidden;
+        }
+        .pp {
+            background: #EEE;
+            max-width: 100%;
+            transition: all 200ms ease-in-out;
+        }
+        .pp:hover {
+            background: #777;
+            transform: scale(1.1);
+        }
+        .card-title {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .card-header {
+            background: #666;
+            padding: 5px;
+            text-align: center;
+            color: white;
+        }
+        .card-body {
+            background: crimson;
+            color: white;
+            font-weight: 800;
+            text-align: center;
+        }
+        .card {
+            background: #555;
+            color: black;
+            font-family: f1;
+        }
+        .row {
+            display: flex;
+            flex-direction:row;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <h2>@ViewBag.Title</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                imagePath = $"../../Images/{item.DriverID}.png";
+
+                <div class="card col-lg-4">
+                    <div class="card-header">
+                        <h5 class="card-title">@item.FullName</h5>
+                    </div>
+                    <div class="imageCont">
+                         <a href='@Url.Action($"Details/{item.DriverID}", "Driver")'><img src=@imagePath class="card-img-top pp" alt="..."></a>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            @Html.DisplayFor(modelItem => item.Age)
+                        </p>
+                        <p>
+                            @Html.DisplayFor(modelItem => item.Country)
+                        </p>
+                        <p>
+                            @Html.DisplayFor(modelItem => item.DebutYear)
+                        </p>
+                        <p>
+                            @Html.DisplayFor(modelItem => item.LastYear)
+                        </p>
+                        <p>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.DriverID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.DriverID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.DriverID })
+                        </p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Country)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DebutYear)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastYear)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DebutYear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastYear)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DriverID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.DriverID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DriverID })
+                </td>
+            </tr>
+        }
+    </table>
+
+</body>
+

@@ -1,0 +1,188 @@
+﻿@model F1WebApp_CodeFirstSeededDb.Models.Car
+
+@{
+    ViewBag.Title = "Details";
+    string color = "";
+    string fontColor = "";
+    string border = "";
+    string logo = "";
+}
+<head>
+    <style>
+        .carImage {
+            width: 100%;
+        }
+        body {
+            background: #444;
+            color: white;
+        }
+        .logo {
+            max-width: 200px;
+            display: flex;
+            margin: 0 auto;
+        }
+        .main {
+            margin-top: 100px;
+        }
+        a {
+            font-style: normal;
+            text-decoration: none;
+            color: white;
+        }
+        a:hover {
+            color:aliceblue;
+        }
+    </style>
+</head>
+<body>
+    @{
+
+        switch (Model.Constructor.Name)
+        {
+            case "Mercedes":
+                color = "darkcyan";
+                fontColor = "white";
+                border = "grey";
+                logo = "https://i.pinimg.com/originals/fb/29/3d/fb293d8f472824f541de596f3d2a54d6.png";
+                break;
+            case "Ferrari":
+                color = "#ff2800";
+                fontColor = "white";
+                border = "black";
+                logo = "https://i.pinimg.com/originals/ee/36/8b/ee368b050bd13771056f4ae90b43bc0a.png";
+                break;
+            case "RedBull Racing":
+                color = "#02172f";
+                fontColor = "white";
+                border = "yellow";
+                logo = "https://upload.wikimedia.org/wikipedia/en/thumb/7/70/Aston_Martin_Red_Bull_Racing_logo.svg/1200px-Aston_Martin_Red_Bull_Racing_logo.svg.png";
+                break;
+            case "McLaren Formula 1":
+                color = "#F98E1d";
+                fontColor = "black";
+                border = "blue";
+                logo = "http://pluspng.com/img-png/mclaren-logo-png-mclaren-logo-2002-present-2560x1440-hd-png-2560.png";
+                break;
+            case "Haas":
+                color = "#666";
+                fontColor = "white";
+                border = "red";
+                logo = "https://upload.wikimedia.org/wikipedia/commons/d/d4/Logo_Haas_F1.png";
+                break;
+            case "Williams":
+                color = "white";
+                fontColor = "navy";
+                border = "lightblue";
+                logo = "https://i.pinimg.com/originals/33/91/41/339141dc8600131dc7fd38107160e0a0.png";
+                break;
+            case "Toro Rosso":
+                color = "#06012f";
+                fontColor = "white";
+                border = "red";
+                logo = "https://i.pinimg.com/originals/fa/68/f5/fa68f5cde7ea4da0f8cd71c334317798.png";
+                break;
+            case "Alfa Romeo Racing":
+                color = "crimson";
+                fontColor = "white";
+                border = "tomato";
+                logo = "https://cdn.bleacherreport.net/images/team_logos/328x328/sauber_f1.png";
+                break;
+            case "Racing Point Force India":
+                color = "pink";
+                fontColor = "black";
+                border = "black";
+                logo = "http://3.bp.blogspot.com/-LAUG7XUlMmU/VEo4_H8fUAI/AAAAAAAAF-k/nmo8KUbNHmE/s1600/Logo%2BForce_India_F1_Team.png";
+                break;
+            case "Renault Sport":
+                color = "#ffeb19";
+                fontColor = "black";
+                border = "black";
+                logo = "https://upload.wikimedia.org/wikipedia/en/thumb/a/a8/Renault_Sport_Logo.svg/1280px-Renault_Sport_Logo.svg.png";
+                break;
+        }
+    }
+    <div class="container main">
+        <div class="col-lg-6">
+            <h2>@Model.Name</h2>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Constructor.Name)
+                </dt>
+
+                <dd>
+                    @Html.ActionLink(Model.Constructor.Name, $"Details/{Model.Constructor.ConstructorID}", "Constructor")
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Driver.FullName)
+                </dt>
+
+                <dd>
+                    @Html.ActionLink(Model.Driver.FullName, $"Details/{Model.Driver.DriverID}", "Driver")
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Year)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Year)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Wins)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Wins)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Podiums)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Podiums)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.FastestLaps)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FastestLaps)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Poles)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Poles)
+                </dd>
+
+            </dl>
+            <img src=@logo class="logo" />
+        </div>
+        <div class="col-lg-6">
+            @{
+                string imagePath = "";
+                imagePath = $"../../Images/CarImages/{Model.Constructor.ConstructorID}.jpg";
+            }
+            <img src=@imagePath class="carImage" style="border: 2px solid @border;" />
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.CarID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>

@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<head>
+    <style>
+        .tutorial {
+            max-height:500px;
+        }
+    </style>
+</head>
+<body>
+    <h2>@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>
+
+    <p>Use this area to provide additional information.</p>
+    <ol>
+        <li>
+            <ul>
+                <li>
+                    <h3>New Project</h3>
+                </li>
+                <li>
+                    <p>This website was built as a ASP.NET Web Application (Framework).</p>
+                    <p>Select MVC</p>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <ul>
+                <li>
+                    <h3>Install EntityFramework to the project</h3>
+                </li>
+                <li>
+                    <p>There are two ways of doing this: using the NuGet package manager, or using the Package Manager Console</p>
+                </li>
+                <li>
+                    <p>Enter into the Package Manager Console: install-package EntityFramework -ProjectName "PROJECTNAME"</p>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <ul>
+                <li>
+                    <h3>Creating the models for your database</h3>
+                </li>
+                <li>
+                    <p>In this example, there were three tables in the database: Driver, Car, and Constructor</p>
+                    <p>For each table I created a model class:</p>
+                    <ol>
+                        <li>Add a new item to the "Models" folder</li>
+                        <li>Pick "class.cs", and change the name of the file to the name of the table (e.g Car.cs)</li>
+                    </ol>
+                    <p>In this file, add the using statements System.Data.Entity and System.ComponentModel.DataAnnotations</p>
+                    <p>DataAnnotations allows you to manipulate the data that is input to your table, as well as controlling the way it is output.</p>
+                    <ul>
+                        <li>[key]  -   Defines a Primary key</li>
+                        <li>[Range(min, max)]  -   Defines the correct range for the values</li>
+                        <li>[StringLength(50)]  -   Limits the length of a string</li>
+                        <li>[DisplayFormat()]   -    Changes how the data is displayed one the web page</li>
+                    </ul>
+                    <h4>The next step is to set up the columns for your table:</h4>
+                    <p>Below is an example for the Driver Model on this project</p>
+                    <img src="~/Images/Tutorial/DriverModel.png" class="tutorial" />
+                </li>
+            </ul>
+        </li>
+        <li>
+            <ul>
+                <li>
+                    <h3>Creating the Database Context</h3>
+                </li>
+                <li>
+                    <ol>
+                        <li>Add a DAL (Data Access Layer) folder in the root folder of the project - it should be on the same level as the Models folder</li>
+                        <li>In this folder, add a file called DatabaseContext.cs (the name doesn't matter, but remember what it is called)</li>
+
+                    </ol>
+                </li>
+            </ul>
+        </li>
+    </ol>
+</body>
+
