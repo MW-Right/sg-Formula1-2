@@ -7,8 +7,12 @@
 
 <head>
     <style>
-        body {
-            background: white;
+        @@font-face {
+            font-family: 'f1';
+            src: url('../../Formula1-Regular.ttf');
+        }
+        body > * {
+            background: #555;
         }
         .imageCont{
             overflow: hidden;
@@ -30,14 +34,18 @@
             background: #666;
             padding: 5px;
             text-align: center;
+            color: white;
         }
         .card-body {
-            background: white;
-
+            background: crimson;
+            color: white;
+            font-weight: 800;
+            text-align: center;
         }
         .card {
-            background: white;
+            background: #555;
             color: black;
+            font-family: f1;
         }
         .row {
             display: flex;
